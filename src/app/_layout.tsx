@@ -9,7 +9,25 @@ import {
     Rubik_700Bold
 } from "@expo-google-fonts/rubik"
 
+import { LogBox } from "react-native"
 import { Loading } from "@/components/loading"
+
+LogBox.ignoreLogs(["findDOMNode is deprecated"])
+
+if (typeof window !== "undefined") {
+  const originalWarn = console.warn
+  const originalError = console.error
+
+  console.warn = (...args: any[]) => {
+    if (typeof args[0] === "string" && args[0].includes("findDOMNode")) return
+    originalWarn(...args)
+  }
+
+  console.error = (...args: any[]) => {
+    if (typeof args[0] === "string" && args[0].includes("findDOMNode")) return
+    originalError(...args)
+  }
+}
 
 export default function Layout() {
     const [fontsLoaded] = useFonts({

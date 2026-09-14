@@ -4,7 +4,7 @@ import { api } from "@/services/api"
 import { Categories, CategoriesProps } from "@/components/categories"
 import { PlaceProps } from "@/components/place"
 import { Places } from "@/components/places"
-import MapView, {Callout, Marker} from "react-native-maps"
+import { MapView, Callout, Marker } from "@/components/map"
 import * as Location from 'expo-location';
 import { fontFamily, colors } from "@/styles/theme"
 import { router } from "expo-router"
