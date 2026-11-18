@@ -1,11 +1,9 @@
-import {
-  IconBed,
-  IconMovie,
-  IconCoffee,
-  IconShoppingBag,
-  IconToolsKitchen2,
-  IconProps,
-} from "@tabler/icons-react-native"
+﻿import IconBed from "@tabler/icons-react-native/dist/esm/icons/IconBed.mjs"
+import IconMovie from "@tabler/icons-react-native/dist/esm/icons/IconMovie.mjs"
+import IconCoffee from "@tabler/icons-react-native/dist/esm/icons/IconCoffee.mjs"
+import IconShoppingBag from "@tabler/icons-react-native/dist/esm/icons/IconShoppingBag.mjs"
+import IconToolsKitchen2 from "@tabler/icons-react-native/dist/esm/icons/IconToolsKitchen2.mjs"
+import type { IconProps } from "@tabler/icons-react-native/dist/esm/types.mjs"
 
 export const categoriesIcons: Record<string, React.ComponentType<IconProps>> = {
   "146b1a88-b3d3-4232-8b8f-c1f006f1e86d": IconToolsKitchen2,
