@@ -17,6 +17,6 @@ export const colors = {
 
   red: {
     light: "#FDEDED",
-    base: "#F94144",
+    base: "#FF940F",
   },
 }

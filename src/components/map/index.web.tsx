@@ -1,9 +1,10 @@
 ﻿import React from "react"
 import { View, StyleSheet } from "react-native"
 
-export function MapView({ children, initialRegion, style }: any) {
-  const lat = initialRegion?.latitude || -23.561187
-  const lng = initialRegion?.longitude || -46.656451
+export function MapView({ children, initialRegion, region, style }: any) {
+  const currentRegion = region || initialRegion
+  const lat = currentRegion?.latitude || -23.561187
+  const lng = currentRegion?.longitude || -46.656451
 
   const markers: any[] = []
 
@@ -12,13 +13,7 @@ export function MapView({ children, initialRegion, style }: any) {
     if (Array.isArray(child)) {
       child.forEach(processChild)
     } else if (child?.props?.coordinate) {
-      let title = child.props.identifier || "Local"
-      // Check if callout child has text info
-      if (child.props.children) {
-        const callout = Array.isArray(child.props.children)
-          ? child.props.children.find((c: any) => c?.type?.name === "Callout" || c?.props?.onPress)
-          : child.props.children
-      }
+      let title = child.props.identifier || "Ponto de Referência"
       markers.push({
         lat: child.props.coordinate.latitude,
         lng: child.props.coordinate.longitude,
@@ -41,6 +36,7 @@ export function MapView({ children, initialRegion, style }: any) {
       <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
       <style>
         html, body, #map { height: 100%; width: 100%; margin: 0; padding: 0; }
+        .custom-popup { font-family: sans-serif; font-size: 13px; font-weight: bold; color: #257F49; }
       </style>
     </head>
     <body>
@@ -54,7 +50,7 @@ export function MapView({ children, initialRegion, style }: any) {
 
         const markersData = ${markersJson};
         markersData.forEach(m => {
-          L.marker([m.lat, m.lng]).addTo(map).bindPopup(m.title);
+          L.marker([m.lat, m.lng]).addTo(map).bindPopup('<div class="custom-popup">' + m.title + '</div>').openPopup();
         });
       </script>
     </body>
@@ -64,6 +60,7 @@ export function MapView({ children, initialRegion, style }: any) {
   return (
     <View style={[styles.container, style]}>
       <iframe
+        key={`${lat}-${lng}-${markers.length}`}
         srcDoc={mapHtml}
         style={{
           width: "100%",

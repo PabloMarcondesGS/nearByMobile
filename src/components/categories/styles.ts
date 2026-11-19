@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native"
+﻿import { StyleSheet } from "react-native"
 import { colors, fontFamily } from "@/styles/theme"
 
 export const s = StyleSheet.create({
@@ -6,7 +6,7 @@ export const s = StyleSheet.create({
         maxHeight: 36,
         position: "absolute",
         zIndex: 1,
-        top: 64
+        top: 110
     },
     content: {
         gap: 8,
